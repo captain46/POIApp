@@ -18,10 +18,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class newPOIScreen extends AppCompatActivity {
+public class NewPOIScreen extends AppCompatActivity {
 
-    private static final String TAG = "newPOIScreen";
+    private static final int REQUEST_GPS = 101;
 
+    private static final String TAG = "NewPOIScreen";
+
+    private PoiLocation poiLocation;
     private TextView foundCoordinates;
 
     @Override
@@ -29,6 +32,7 @@ public class newPOIScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_poiscreen);
 
+        poiLocation = new PoiLocation();
         foundCoordinates = (TextView) findViewById(R.id.foundCoordinates);
     }
 
@@ -38,7 +42,7 @@ public class newPOIScreen extends AppCompatActivity {
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        LocationListener locationListener = new MyLocationListener();
+        LocationListener locationListener = new LocationListenerImpl();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -54,20 +58,24 @@ public class newPOIScreen extends AppCompatActivity {
     }
 
     public void clearPOI(View view) {
-        newPOIScreen.this.foundCoordinates.setText("");
+        NewPOIScreen.this.foundCoordinates.setText("");
     }
 
-    class MyLocationListener implements LocationListener {
+    class LocationListenerImpl implements LocationListener {
 
         @Override
         public void onLocationChanged(Location location) {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
 
-            Log.e("Latitude", String.valueOf(latitude));
-            Log.e("Longitude", String.valueOf(longitude));
+            poiLocation.setLatitude(location.getLatitude());
+            poiLocation.setLongitude(location.getLongitude());
 
-            getAddress(longitude, latitude);
+            Log.e("Latitude", String.valueOf(poiLocation.getLatitude()));
+            Log.e("Longitude", String.valueOf(poiLocation.getLongitude()));
+
+            POIService poiService = new POIServiceImpl();
+            String url = poiService.resolveAddress(poiLocation);
+            HttpHelper httpHelper = new HttpHelper(new AsyncCallback());
+            httpHelper.execute(url);
         }
 
         @Override
@@ -94,7 +102,6 @@ public class newPOIScreen extends AppCompatActivity {
             }
 
             HttpHelper httpHelper = new HttpHelper(new AsyncCallback());
-            //httpHelper.setCallback(new AsyncCallback());
             httpHelper.execute(url);
 
         }
@@ -110,8 +117,9 @@ public class newPOIScreen extends AppCompatActivity {
                 JSONObject jsonResult = jsonArray.getJSONObject(0);
 
                 String address = jsonResult.getString("formatted_address");
+                poiLocation.setPoiResult(address);
 
-                newPOIScreen.this.foundCoordinates.setText(address);
+                NewPOIScreen.this.foundCoordinates.setText(poiLocation.getPoiResult());
                 Log.i("ADDRESS",address);
             } catch (JSONException e) {
                 e.printStackTrace();

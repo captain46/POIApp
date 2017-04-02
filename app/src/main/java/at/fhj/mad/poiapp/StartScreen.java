@@ -3,7 +3,6 @@ package at.fhj.mad.poiapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class StartScreen extends AppCompatActivity {
@@ -17,7 +16,7 @@ public class StartScreen extends AppCompatActivity {
     }
 
     public void openAddPOIView(View view) {
-        Intent intent = new Intent(this, newPOIScreen.class);
+        Intent intent = new Intent(this, NewPOIScreen.class);
         startActivity(intent);
     }
 }
