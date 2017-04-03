@@ -6,9 +6,27 @@ package at.fhj.mad.poiapp;
 
 public class PoiLocation {
 
+    private long id;
+    private String name;
     private double longitude;
     private double latitude;
     private String poiResult;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public double getLongitude() {
         return longitude;
@@ -32,5 +50,10 @@ public class PoiLocation {
 
     public void setPoiResult(String poiResult) {
         this.poiResult = poiResult;
+    }
+
+    @Override
+    public String toString() {
+        return "{id:" + id + ", name:" + name + ", lat:" + latitude + ", lon:" + longitude + "}";
     }
 }
