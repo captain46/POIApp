@@ -1,6 +1,10 @@
-package at.fhj.mad.poiapp;
+package at.fhj.mad.poiapp.service;
 
 import android.content.Context;
+
+import java.util.List;
+
+import at.fhj.mad.poiapp.PoiLocation;
 
 /**
  * Created by Simone on 01.04.2017.
@@ -21,4 +25,6 @@ public interface POIService {
      * @param poiLocation
      */
     void savePoi(Context context, PoiLocation poiLocation);
+
+    List<String> getAllPOIs(Context context);
 }

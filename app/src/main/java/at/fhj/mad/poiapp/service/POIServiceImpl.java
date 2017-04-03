@@ -1,12 +1,12 @@
-package at.fhj.mad.poiapp;
+package at.fhj.mad.poiapp.service;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
+import at.fhj.mad.poiapp.PoiLocation;
 import at.fhj.mad.poiapp.database.PoiDataAccess;
 
 /**
@@ -36,5 +36,16 @@ public class POIServiceImpl implements POIService {
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);
         long id = poiDataAccess.addPoi(poiLocation);
         Log.i("DB OP", "POI "+poiLocation.toString()+ "has been successfull added to database");
+    }
+
+    @Override
+    public List<String> getAllPOIs(Context context) {
+        List<String> pois = new ArrayList<>();
+        PoiDataAccess poiDataAccess = new PoiDataAccess(context);
+        for(PoiLocation poiLocation : poiDataAccess.getAllPois()) {
+            pois.add(poiLocation.toString());
+            //TODO: show only name - anything else should be shown in details view
+        }
+        return pois;
     }
 }

@@ -18,6 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import at.fhj.mad.poiapp.service.HttpHelper;
+import at.fhj.mad.poiapp.service.ICallback;
+import at.fhj.mad.poiapp.service.POIService;
+import at.fhj.mad.poiapp.service.POIServiceImpl;
+
 
 public class NewPOIScreen extends AppCompatActivity {
     private static final String TAG = "NewPOIScreen";
