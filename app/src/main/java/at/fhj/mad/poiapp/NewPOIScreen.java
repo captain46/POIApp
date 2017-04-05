@@ -148,9 +148,9 @@ public class NewPOIScreen extends AppCompatActivity {
                 JSONObject jsonResult = jsonArray.getJSONObject(0);
 
                 String address = jsonResult.getString("formatted_address");
-                poiLocation.setPoiResult(address);
+                poiLocation.setAddress(address);
 
-                NewPOIScreen.this.foundCoordinates.setText(poiLocation.getPoiResult());
+                NewPOIScreen.this.foundCoordinates.setText(poiLocation.getAddress());
                 Log.i("ADDRESS",address);
             } catch (JSONException e) {
                 e.printStackTrace();

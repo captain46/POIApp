@@ -10,7 +10,7 @@ public class PoiLocation {
     private String name;
     private double longitude;
     private double latitude;
-    private String poiResult;
+    private String address;
 
     public long getId() {
         return id;
@@ -44,12 +44,12 @@ public class PoiLocation {
         this.latitude = latitude;
     }
 
-    public String getPoiResult() {
-        return poiResult;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPoiResult(String poiResult) {
-        this.poiResult = poiResult;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

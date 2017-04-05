@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class PoiDataAccess {
         contentValues.put(PoiDbHelper.COLUMN_NAME, poiLocation.getName());
         contentValues.put(PoiDbHelper.COLUMN_LONG, poiLocation.getLongitude());
         contentValues.put(PoiDbHelper.COLUMN_LAT, poiLocation.getLatitude());
-        contentValues.put(PoiDbHelper.COLUMN_ADDRESS, poiLocation.getPoiResult());
+        contentValues.put(PoiDbHelper.COLUMN_ADDRESS, poiLocation.getAddress());
 
         long id = sqLiteDatabase.insert(PoiDbHelper.TABLE_POIS, null, contentValues);
 
@@ -63,7 +62,7 @@ public class PoiDataAccess {
                 poiLocation.setName(cursor.getString(1));
                 poiLocation.setLatitude(cursor.getDouble(2));
                 poiLocation.setLongitude(cursor.getDouble(3));
-                poiLocation.setPoiResult(cursor.getString(4));
+                poiLocation.setAddress(cursor.getString(4));
 
                 poiLocations.add(poiLocation);
             } while (cursor.moveToNext());
