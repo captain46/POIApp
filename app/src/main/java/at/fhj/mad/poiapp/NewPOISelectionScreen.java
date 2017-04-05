@@ -17,4 +17,9 @@ public class NewPOISelectionScreen extends AppCompatActivity {
         Intent intent = new Intent(this, NewPOIScreenGPS.class);
         startActivity(intent);
     }
+
+    public void openAddPOIViewManual(View view) {
+        Intent intent = new Intent(this, NewPOIScreenManual.class);
+        startActivity(intent);
+    }
 }
