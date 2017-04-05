@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="at.fhj.mad.poiapp.POIList">
 
+    <ListView
+        android:id="@+id/allPois"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"/>
 </RelativeLayout>

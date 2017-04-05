@@ -56,10 +56,9 @@ public class PoiDataAccess {
 
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 
-        PoiLocation poiLocation = new PoiLocation();
-
         if(cursor.moveToFirst()) {
             do {
+                PoiLocation poiLocation = new PoiLocation();
                 poiLocation.setId(cursor.getLong(0));
                 poiLocation.setName(cursor.getString(1));
                 poiLocation.setLatitude(cursor.getDouble(2));
