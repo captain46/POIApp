@@ -10,4 +10,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="at.fhj.mad.poiapp.POIDetail">
 
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/showName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/showLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+        android:id="@+id/showLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/showAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/deletePOI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete POI"
+            android:onClick="deletePoi"/>
+
+    </LinearLayout>
 </RelativeLayout>

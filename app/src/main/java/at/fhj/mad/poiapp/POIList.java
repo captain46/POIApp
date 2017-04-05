@@ -1,8 +1,11 @@
 package at.fhj.mad.poiapp;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +17,7 @@ import at.fhj.mad.poiapp.service.POIServiceImpl;
 public class POIList extends AppCompatActivity {
 
     private POIService poiService;
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<PoiLocation> arrayAdapter;
     private ListView listView;
 
     @Override
@@ -24,6 +27,15 @@ public class POIList extends AppCompatActivity {
 
         poiService = new POIServiceImpl();
         listView = (ListView) findViewById(R.id.allPois);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PoiLocation poiLocation = (PoiLocation)parent.getAdapter().getItem(position);
+                Intent intent = new Intent(view.getContext(), POIDetail.class);
+                intent.putExtra("poiLocation", poiLocation);
+                startActivity(intent);
+            }
+        });
         showAllPOIs();
     }
 
@@ -33,8 +45,8 @@ public class POIList extends AppCompatActivity {
     }
 
     public void showAllPOIs() {
-        List<String> pois = poiService.getAllPOIs(this);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pois);
+        List<PoiLocation> pois = poiService.getAllPOIs(this);
+        arrayAdapter = new ArrayAdapter<PoiLocation>(this, android.R.layout.simple_list_item_1, pois);
         listView.setAdapter(arrayAdapter);
     }
 }

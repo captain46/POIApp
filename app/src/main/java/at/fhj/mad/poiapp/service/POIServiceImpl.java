@@ -36,7 +36,14 @@ public class POIServiceImpl implements POIService {
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);
         long id = poiDataAccess.addPoi(poiLocation);
         poiLocation.setId(id);
-        Log.i("DB OP", "POI "+poiLocation.toString()+ "has been successfull added to database");
+        Log.i("DB OP", "POI "+poiLocation.toString()+ "has been added to database");
+    }
+
+    @Override
+    public void deletePoi(Context context, PoiLocation poiLocation) {
+        Log.i("DB OP", "POI "+poiLocation.toString()+ "will be removed from database");
+        PoiDataAccess poiDataAccess = new PoiDataAccess(context);
+        poiDataAccess.deletePoi(poiLocation);
     }
 
     @Override
@@ -47,14 +54,10 @@ public class POIServiceImpl implements POIService {
     }
 
     @Override
-    public List<String> getAllPOIs(Context context) {
-        List<String> pois = new ArrayList<>();
+    public List<PoiLocation> getAllPOIs(Context context) {
+        Log.i("DB OP", "Request all POIs");
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);
         List<PoiLocation> savedPois = poiDataAccess.getAllPois();
-        for(PoiLocation poiLocation : savedPois) {
-            pois.add(poiLocation.toString());
-            //TODO: show only name - anything else should be shown in details view
-        }
-        return pois;
+        return savedPois;
     }
 }

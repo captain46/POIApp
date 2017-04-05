@@ -1,10 +1,14 @@
 package at.fhj.mad.poiapp;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by Simone on 31.03.2017.
  */
 
-public class PoiLocation {
+public class PoiLocation implements Serializable {
 
     private long id;
     private String name;
@@ -54,6 +58,6 @@ public class PoiLocation {
 
     @Override
     public String toString() {
-        return "{id:" + id + ", name:" + name + ", lat:" + latitude + ", lon:" + longitude + "}";
+        return name;
     }
 }
