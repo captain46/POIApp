@@ -40,6 +40,13 @@ public class POIServiceImpl implements POIService {
     }
 
     @Override
+    public void deleteAllPois(Context context) {
+        PoiDataAccess poiDataAccess = new PoiDataAccess(context);
+        poiDataAccess.deleteAllPois();
+        Log.i("DB OP", "All POIs have been removed");
+    }
+
+    @Override
     public List<String> getAllPOIs(Context context) {
         List<String> pois = new ArrayList<>();
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);

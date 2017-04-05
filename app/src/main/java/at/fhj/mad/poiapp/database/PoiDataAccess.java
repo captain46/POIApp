@@ -40,10 +40,14 @@ public class PoiDataAccess {
     }
 
     public void deletePoi(PoiLocation poiLocation) {
-
         sqLiteDatabase = poiDbHelper.getWritableDatabase();
-
         sqLiteDatabase.delete(PoiDbHelper.TABLE_POIS, PoiDbHelper.COLUMN_ID + "=" + poiLocation.getId(), null);
+        sqLiteDatabase.close();
+    }
+
+    public void deleteAllPois() {
+        sqLiteDatabase = poiDbHelper.getWritableDatabase();
+        sqLiteDatabase.delete(PoiDbHelper.TABLE_POIS, null, null);
         sqLiteDatabase.close();
     }
 

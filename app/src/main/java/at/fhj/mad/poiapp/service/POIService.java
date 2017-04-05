@@ -26,5 +26,11 @@ public interface POIService {
      */
     void savePoi(Context context, PoiLocation poiLocation);
 
+    /**
+     * removes all saved POIs from the database
+     * @param context
+     */
+    void deleteAllPois(Context context);
+
     List<String> getAllPOIs(Context context);
 }
