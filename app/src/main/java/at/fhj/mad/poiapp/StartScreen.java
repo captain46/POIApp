@@ -15,13 +15,13 @@ public class StartScreen extends AppCompatActivity {
         setContentView(R.layout.activity_start_screen);
     }
 
-    public void openAddPOIView(View view) {
-        Intent intent = new Intent(this, NewPOIScreen.class);
+    public void openPOIList(View view) {
+        Intent intent = new Intent(this, POIList.class);
         startActivity(intent);
     }
 
-    public void openPOIList(View view) {
-        Intent intent = new Intent(this, POIList.class);
+    public void openAddPOISelectionView(View view) {
+        Intent intent = new Intent(this, NewPOISelectionScreen.class);
         startActivity(intent);
     }
 }

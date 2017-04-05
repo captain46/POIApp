@@ -24,8 +24,8 @@ import at.fhj.mad.poiapp.service.POIService;
 import at.fhj.mad.poiapp.service.POIServiceImpl;
 
 
-public class NewPOIScreen extends AppCompatActivity {
-    private static final String TAG = "NewPOIScreen";
+public class NewPOIScreenGPS extends AppCompatActivity {
+    private static final String TAG = "NewPOIScreenGPS";
 
     private PoiLocation poiLocation;
     private POIService poiService;
@@ -36,7 +36,7 @@ public class NewPOIScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_poiscreen);
+        setContentView(R.layout.activity_new_poiscreen_gps);
 
         poiService = new POIServiceImpl();
         poiLocation = new PoiLocation();
@@ -88,8 +88,8 @@ public class NewPOIScreen extends AppCompatActivity {
      * @param view
      */
     public void clearPOI(View view) {
-        NewPOIScreen.this.foundCoordinates.setText("");
-        NewPOIScreen.this.poiName.setText("");
+        NewPOIScreenGPS.this.foundCoordinates.setText("");
+        NewPOIScreenGPS.this.poiName.setText("");
         poiLocation = new PoiLocation();
     }
 
@@ -150,7 +150,7 @@ public class NewPOIScreen extends AppCompatActivity {
                 String address = jsonResult.getString("formatted_address");
                 poiLocation.setAddress(address);
 
-                NewPOIScreen.this.foundCoordinates.setText(poiLocation.getAddress());
+                NewPOIScreenGPS.this.foundCoordinates.setText(poiLocation.getAddress());
                 Log.i("ADDRESS",address);
             } catch (JSONException e) {
                 e.printStackTrace();
