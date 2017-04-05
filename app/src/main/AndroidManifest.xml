@@ -18,9 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewPOIScreen" />
+        <activity android:name=".NewPOIScreenGPS" />
         <activity android:name=".POIList" />
-        <activity android:name=".POIDetail"></activity>
+        <activity android:name=".POIDetail" />
+        <activity android:name=".NewPOISelectionScreen" />
+        <activity android:name=".NewPOIScreenManual"></activity>
     </application>
 
 </manifest>
