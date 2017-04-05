@@ -35,6 +35,7 @@ public class POIServiceImpl implements POIService {
     public void savePoi(Context context, PoiLocation poiLocation) {
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);
         long id = poiDataAccess.addPoi(poiLocation);
+        poiLocation.setId(id);
         Log.i("DB OP", "POI "+poiLocation.toString()+ "has been successfull added to database");
     }
 
@@ -42,7 +43,8 @@ public class POIServiceImpl implements POIService {
     public List<String> getAllPOIs(Context context) {
         List<String> pois = new ArrayList<>();
         PoiDataAccess poiDataAccess = new PoiDataAccess(context);
-        for(PoiLocation poiLocation : poiDataAccess.getAllPois()) {
+        List<PoiLocation> savedPois = poiDataAccess.getAllPois();
+        for(PoiLocation poiLocation : savedPois) {
             pois.add(poiLocation.toString());
             //TODO: show only name - anything else should be shown in details view
         }
