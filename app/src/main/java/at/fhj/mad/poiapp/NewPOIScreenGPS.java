@@ -25,8 +25,8 @@ import at.fhj.mad.poiapp.service.POIServiceImpl;
 
 
 public class NewPOIScreenGPS extends AppCompatActivity {
-    private static final String TAG = "NewPOIScreenGPS";
 
+    private static final int REQUEST_GPS = 101;
     private PoiLocation poiLocation;
     private POIService poiService;
     private TextView foundCoordinates;
@@ -51,23 +51,35 @@ public class NewPOIScreenGPS extends AppCompatActivity {
      */
     public void getCurrentLocation(View view) {
 
-        Log.e("TEST", "I AM CLICKED");
+        Log.i("NEW POI GPS", "try to get current location...");
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         LocationListener locationListener = new LocationListenerImpl();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_GPS);
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 1, locationListener);
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_GPS) {
+            startGPS();
+        }
+    }
+
+    private void startGPS() {
+        Log.i("NEW POI GPS", "start GPS");
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_GPS);
+        }
     }
 
     /**
@@ -117,8 +129,8 @@ public class NewPOIScreenGPS extends AppCompatActivity {
             poiLocation.setLatitude(location.getLatitude());
             poiLocation.setLongitude(location.getLongitude());
 
-            Log.e("Latitude", String.valueOf(poiLocation.getLatitude()));
-            Log.e("Longitude", String.valueOf(poiLocation.getLongitude()));
+            Log.i("Latitude", String.valueOf(poiLocation.getLatitude()));
+            Log.i("Longitude", String.valueOf(poiLocation.getLongitude()));
 
             String url = poiService.resolveAddress(poiLocation);
             HttpHelper httpHelper = new HttpHelper(new AsyncCallback());
@@ -151,7 +163,7 @@ public class NewPOIScreenGPS extends AppCompatActivity {
                 poiLocation.setAddress(address);
 
                 NewPOIScreenGPS.this.foundCoordinates.setText(poiLocation.getAddress());
-                Log.i("ADDRESS",address);
+                Log.i("resolved address: ",address);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

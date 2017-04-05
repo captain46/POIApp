@@ -26,6 +26,12 @@ public class POIServiceImpl implements POIService {
                     .append(",")
                     .append(String.valueOf(poiLocation.getLongitude()))
                     .append("&sensor=true");
+        } else {
+            //some defaults
+            sb.append("47.4534737")
+                    .append(",")
+                    .append("15.3312921,17")
+                    .append("&sensor=true");
         }
 
         return sb.toString();
