@@ -10,10 +10,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="at.fhj.mad.poiapp.POIList">
 
-    <ListView
-        android:id="@+id/allPois"
+    <LinearLayout android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"/>
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/deleteAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Delete all POIs"
+            android:layout_alignParentEnd="true"
+            android:onClick="deleteAllPOIs"/>
+
+        <ListView
+            android:id="@+id/allPois"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true" />
+    </LinearLayout>
 </RelativeLayout>
