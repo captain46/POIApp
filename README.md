@@ -2,6 +2,7 @@
 
     λ Title:	POI App
     λ Author:	Simone Hierhold
+    λ GitHub:	https://github.com/captain46/POIApp/
 
 
 #1. Introduction
@@ -14,4 +15,7 @@
 
 #2. Screenshots
 
-![Start Screen](http://i.imgur.com/vpUyXLI.png)
+![POI APP](https://i.imgur.com/oEtl8lK.jpg)
+
+#3. Sources
+	inspired by https://github.com/elmarkrainz/POIApp/
