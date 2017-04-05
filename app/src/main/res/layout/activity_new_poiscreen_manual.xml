@@ -48,18 +48,25 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Adress" />
+            android:text="Address" />
 
         <Button
             android:id="@+id/clearFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CLEAR FIELDS" />
+            android:text="CLEAR FIELDS"
+            android:onClick="clearFields"/>
 
         <Button
             android:id="@+id/saveManualPOI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SAVE POI" />
+            android:text="SAVE POI"
+            android:onClick="saveManualPOI"/>
+
+        <TextView
+            android:id="@+id/textInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

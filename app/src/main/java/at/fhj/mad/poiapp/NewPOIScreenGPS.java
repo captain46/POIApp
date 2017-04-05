@@ -79,7 +79,7 @@ public class NewPOIScreenGPS extends AppCompatActivity {
             poiLocation.setName(poiName.getText().toString());
             poiService.savePoi(this, poiLocation);
             clearPOI(view);
-            poiInfo.setText("successful saved POI "+poiLocation.getName());
+            poiInfo.setText("POI has been successful added.");
         }
     }
 
